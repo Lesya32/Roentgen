@@ -1,0 +1,25 @@
+{% extends 'roentgen/layout.html' %}
+{% load static %}
+
+{% block patient %}
+    <br>
+    <font size="5">
+    Рентген исследования пациента
+    <b>
+    {{ Patient.LastName }}
+    {{ Patient.FirstName }}
+    {{ Patient.MiddleName }}
+    </b>
+    № истории:
+    <b>{{ Patient.CardNumber }}</b>
+    </font>
+    {% for Record in object_list %}
+        <div onclick="window.open('{% url 'СhoiceRecord' Record.IdRecord %}','_self');" style="cursor: pointer;" class="BoxDiv">
+            {{ Record.TypeRecord }}
+            от
+            {{ Record.DateTime }}
+        </div>
+    {% empty %}
+        Нет записей
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'roentgen/layout.html' %}
+
+{% block patient %}
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        Пациент:
+        {{ Patient.LastName }}
+        {{ Patient.FirstName }}
+        {{ Patient.MiddleName }}
+        № истории:
+        {{ Patient.CardNumber }}
+        <b>{{ Record.TypeRecord }} от {{ Record.DateTime }}</b>
+        <button class="glow-button" type="submit" name="Delete">Удалить</button>
+        <br>
+        {{ prot|safe|escape }}
+    </form>
+{% endblock %}

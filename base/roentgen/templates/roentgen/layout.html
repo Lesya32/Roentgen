@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="{% static 'roentgen/img/scanner.ico' %}">
+        <link rel="stylesheet" href="{% static 'roentgen/css/css.css' %}">
+        <title>Пациенты с рентген исследованиями</title>
+    </head>
+    <body>
+        <aside>
+            <form class="example" action="{% url 'Search' %}" method="get">
+                <a href="{% url 'PatientView' %}" class="GlassButton">Вернуться к списку пациентов</a>
+                <input name="CardNumber" type="text" placeholder="номер истории для поиска пациента">
+                <button type="submit" class="Search"></button>
+            </form>
+        </aside>
+        <br>
+        <main>
+            <div class="patient_list">
+                {% block patient %}
+                {% endblock %}
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+{% extends 'roentgen/layout.html' %}
+
+{% block patient %}
+    <h2>Пациенты стационара с рентген исследованиями за последние 3 суток</h2>
+    {% for Patient in object_list %}
+        <div onclick="window.open('{% url 'RecordsView' Patient.idPatient %}','_self');" style="cursor: pointer;" class="BoxDiv">
+            <font size="4" color="Maroon">
+                {{ Patient.LastName }}
+                {{ Patient.FirstName }}
+                {{ Patient.MiddleName }}
+            </font>
+            № <i>истории:</i>
+            <font size="4" color="Maroon">{{ Patient.CardNumber }}</font>
+            <i>Отделение:</i>
+            {{ Patient.Department }}
+            <i>Дата поступления:</i>
+            {{ Patient.ReceiptDate }}
+        </div>
+    {% empty %}
+        <br>
+        <font size="5" color="FireBrick"><i>Нет записей</i></font>
+    {% endfor %}
+{% endblock %}
